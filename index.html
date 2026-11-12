@@ -113,9 +113,18 @@
   Iniciar sesión
     </button>
 
-    <p class="footer">
-      © 2026 PCS · Tu mundo social
-    </p>
+    <section id="authPanel" hidden>
+  <h2 id="authTitle">Crear una cuenta</h2>
+
+  <form id="authForm">
+    <input id="email" type="email" placeholder="Correo electrónico" required>
+    <input id="password" type="password" placeholder="Contraseña" required minlength="6">
+
+    <button class="btn primary" type="submit">Continuar</button>
+  </form>
+
+  <p id="authMessage"></p>
+    </section>
 
   </main>
 <script type="module">
