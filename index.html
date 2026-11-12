@@ -2,244 +2,1041 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#080B12">
-  <title>PCS - Red Social</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080B12">
+<title>PCS - Red Social</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
 
-    body {
-      background: #080B12;
-      color: white;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
+body {
+  background: #080B12;
+  color: white;
+  min-height: 100vh;
+}
 
-    .container {
-      width: 100%;
-      max-width: 420px;
-      text-align: center;
-    }
+button {
+  cursor: pointer;
+}
 
-    .logo {
-      font-size: 65px;
-      font-weight: 900;
-      color: #1684FF;
-      letter-spacing: 5px;
-      margin-bottom: 10px;
-      text-shadow: 0 0 25px #1684FF66;
-    }
+.hidden {
+  display: none !important;
+}
 
-    .subtitle {
-      color: #A5ADBA;
-      font-size: 14px;
-      margin-bottom: 45px;
-    }
+.container {
+  max-width: 460px;
+  margin: auto;
+  padding: 22px;
+}
 
-    h1 {
-      font-size: 27px;
-      margin-bottom: 12px;
-    }
+.logo {
+  font-size: 55px;
+  font-weight: 900;
+  color: #1684FF;
+  letter-spacing: 5px;
+  text-align: center;
+  margin: 35px 0 10px;
+}
 
-    .description {
-      color: #929BAA;
-      font-size: 14px;
-      line-height: 1.6;
-      margin-bottom: 35px;
-    }
+.subtitle {
+  text-align: center;
+  color: #A5ADBA;
+  font-size: 13px;
+  margin-bottom: 40px;
+}
 
-    .btn {
-      display: block;
-      width: 100%;
-      padding: 16px;
-      border: none;
-      border-radius: 12px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      margin-bottom: 14px;
-    }
+h1, h2 {
+  margin-bottom: 15px;
+}
 
-    .primary {
-      background: #1684FF;
-      color: white;
-    }
+.description {
+  color: #929BAA;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  text-align: center;
+}
 
-    .secondary {
-      background: #171D29;
-      color: white;
-      border: 1px solid #283346;
-    }
+.btn {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 13px;
+}
 
-    .footer {
-      color: #687386;
-      font-size: 12px;
-      margin-top: 35px;
-    }
+.primary {
+  background: #1684FF;
+  color: white;
+}
 
-    #authPanel {
-      margin-top: 25px;
-    }
+.secondary {
+  background: #171D29;
+  color: white;
+  border: 1px solid #283346;
+}
 
-    #authPanel[hidden] {
-      display: none;
-    }
+input, textarea {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 13px;
+  border-radius: 10px;
+  border: 1px solid #283346;
+  background: #171D29;
+  color: white;
+  font-size: 15px;
+}
 
-    #authPanel h2 {
-      margin-bottom: 20px;
-    }
+textarea {
+  resize: vertical;
+  min-height: 90px;
+}
 
-    #authPanel input {
-      width: 100%;
-      padding: 15px;
-      margin-bottom: 14px;
-      border-radius: 10px;
-      border: 1px solid #283346;
-      background: #171D29;
-      color: white;
-      font-size: 15px;
-    }
+#authPanel {
+  margin-top: 25px;
+}
 
-    #authMessage {
-      margin-top: 15px;
-      font-size: 14px;
-      overflow-wrap: anywhere;
-    }
-  </style>
+#authMessage {
+  color: #55B5FF;
+  overflow-wrap: anywhere;
+  margin: 12px 0;
+  font-size: 14px;
+}
+
+/* APP */
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: #080B12;
+  border-bottom: 1px solid #202A3A;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-logo {
+  color: #1684FF;
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: 3px;
+}
+
+.header-btn {
+  background: #171D29;
+  border: 1px solid #283346;
+  color: white;
+  padding: 9px 13px;
+  border-radius: 9px;
+}
+
+.feed {
+  max-width: 500px;
+  margin: auto;
+  padding: 15px 12px 100px;
+}
+
+.section-title {
+  font-size: 23px;
+  margin: 15px 5px 20px;
+}
+
+.post {
+  background: #111824;
+  border: 1px solid #283346;
+  border-radius: 14px;
+  margin-bottom: 18px;
+  overflow: hidden;
+}
+
+.post-top {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.username {
+  font-weight: bold;
+}
+
+.post-date {
+  font-size: 11px;
+  color: #8994A5;
+}
+
+.post-text {
+  padding: 0 15px 15px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.post-media {
+  display: block;
+  width: 100%;
+  max-height: 480px;
+  object-fit: contain;
+  background: #05080D;
+}
+
+.post-actions {
+  padding: 12px 15px;
+  display: flex;
+  gap: 20px;
+}
+
+.action-btn {
+  background: transparent;
+  color: #DCE4F0;
+  border: none;
+  font-size: 15px;
+}
+
+.action-btn.liked {
+  color: #FF5470;
+}
+
+.comments {
+  padding: 0 15px 12px;
+}
+
+.comment {
+  font-size: 13px;
+  color: #C4CDDA;
+  padding: 5px 0;
+  overflow-wrap: anywhere;
+}
+
+.comment-form {
+  display: flex;
+  gap: 8px;
+  padding: 0 12px 12px;
+}
+
+.comment-form input {
+  margin: 0;
+  min-width: 0;
+}
+
+.comment-form button {
+  background: #1684FF;
+  color: white;
+  border: none;
+  border-radius: 9px;
+  padding: 0 13px;
+}
+
+.create-box, .profile-box {
+  background: #111824;
+  border: 1px solid #283346;
+  border-radius: 14px;
+  padding: 17px;
+  margin-bottom: 20px;
+}
+
+.create-box h2 {
+  font-size: 18px;
+}
+
+.file-label {
+  display: block;
+  background: #171D29;
+  border: 1px solid #283346;
+  border-radius: 10px;
+  padding: 13px;
+  color: #B9C5D6;
+  margin-bottom: 13px;
+  cursor: pointer;
+}
+
+.file-label input {
+  display: none;
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-around;
+  background: #101722;
+  border-top: 1px solid #283346;
+  padding: 12px 5px;
+  padding-bottom: max(12px, env(safe-area-inset-bottom));
+}
+
+.nav-btn {
+  background: transparent;
+  border: none;
+  color: #A5ADBA;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.nav-btn span {
+  font-size: 22px;
+}
+
+.nav-btn.active {
+  color: #1684FF;
+}
+
+.empty {
+  text-align: center;
+  color: #8994A5;
+  padding: 35px 15px;
+}
+
+</style>
 </head>
 
 <body>
 
-  <main class="container">
+<!-- BIENVENIDA -->
 
-    <div class="logo">PCS</div>
+<section id="welcome" class="container">
+  <div class="logo">PCS</div>
 
-    <p class="subtitle">CONECTA. COMPARTE. DESCUBRE.</p>
+  <p class="subtitle">
+    CONECTA. COMPARTE. DESCUBRE.
+  </p>
 
-    <h1>Bienvenido a PCS</h1>
+  <h1 style="text-align:center">
+    Bienvenido a PCS
+  </h1>
 
-    <p class="description">
-      Un nuevo espacio para compartir tus momentos,
-      descubrir contenido y conectar con personas
-      de todo el mundo.
-    </p>
+  <p class="description">
+    Un nuevo espacio para compartir tus momentos,
+    descubrir contenido y conectar con personas.
+  </p>
 
-    <button class="btn primary" id="registerBtn">
-      Crear una cuenta
+  <button class="btn primary" id="registerBtn">
+    Crear una cuenta
+  </button>
+
+  <button class="btn secondary" id="loginBtn">
+    Iniciar sesión
+  </button>
+
+  <section id="authPanel" class="hidden">
+    <h2 id="authTitle">Crear una cuenta</h2>
+
+    <form id="authForm">
+      <input id="email" type="email"
+        placeholder="Correo electrónico" required>
+
+      <input id="password" type="password"
+        placeholder="Contraseña" minlength="6" required>
+
+      <button class="btn primary" type="submit">
+        Registrarme
+      </button>
+    </form>
+
+    <p id="authMessage"></p>
+  </section>
+</section>
+
+
+<!-- APLICACIÓN -->
+
+<section id="app" class="hidden">
+
+  <header>
+    <div class="header-logo">PCS</div>
+
+    <button class="header-btn" id="logoutBtn">
+      Salir
     </button>
+  </header>
 
-    <button class="btn secondary" id="loginBtn">
-      Iniciar sesión
-    </button>
+  <!-- INICIO -->
 
-    <section id="authPanel" hidden>
-      <h2 id="authTitle">Crear una cuenta</h2>
+  <section id="homePage" class="feed">
 
-      <form id="authForm">
-        <input id="email" type="email"
-          placeholder="Correo electrónico" required>
+    <h1 class="section-title">Inicio</h1>
 
-        <input id="password" type="password"
-          placeholder="Contraseña" required minlength="6">
+    <div class="create-box">
+      <h2>¿Qué quieres compartir?</h2>
+
+      <form id="postForm">
+
+        <textarea id="postText"
+          placeholder="Escribe algo..."
+          maxlength="2000"></textarea>
+
+        <label class="file-label">
+          📷 Seleccionar foto o video
+          <input id="mediaFile" type="file"
+            accept="image/*,video/mp4,video/webm">
+        </label>
 
         <button class="btn primary" type="submit">
-          Registrarme
+          Publicar
         </button>
+
+        <p id="postMessage"></p>
+
       </form>
+    </div>
 
-      <p id="authMessage" aria-live="polite"></p>
-    </section>
+    <div id="posts">
+      <p class="empty">Cargando publicaciones...</p>
+    </div>
 
-  </main>
+  </section>
 
-  <script type="module">
 
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+  <!-- PERFIL -->
 
-    import {
-      getAuth,
-      createUserWithEmailAndPassword,
-      signInWithEmailAndPassword
-    } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+  <section id="profilePage" class="feed hidden">
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyBMlrOplXMBEEraQTqWClISC12vIPveqRQ",
-      authDomain: "pcsd-b01e1.firebaseapp.com",
-      projectId: "pcsd-b01e1",
-      storageBucket: "pcsd-b01e1.firebasestorage.app",
-      messagingSenderId: "372951248604",
-      appId: "1:372951248604:web:4d28e537c76b5aa5708e19"
-    };
+    <h1 class="section-title">Mi perfil</h1>
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
+    <div class="profile-box">
+      <h2>👤 Mi cuenta</h2>
 
-    const panel = document.getElementById("authPanel");
-    const title = document.getElementById("authTitle");
-    const form = document.getElementById("authForm");
-    const message = document.getElementById("authMessage");
-    const email = document.getElementById("email");
-    const password = document.getElementById("password");
+      <p id="profileEmail"
+        style="color:#A5ADBA;overflow-wrap:anywhere">
+      </p>
 
-    let mode = "register";
+      <p style="margin-top:12px;color:#8994A5">
+        Bienvenido a PCS.
+      </p>
+    </div>
 
-    document.getElementById("registerBtn").addEventListener("click", () => {
-      mode = "register";
-      title.textContent = "Crear una cuenta";
-      form.querySelector("button").textContent = "Registrarme";
-      message.textContent = "";
-      panel.hidden = false;
+    <h2>Mis publicaciones</h2>
+
+    <div id="myPosts"></div>
+
+  </section>
+
+
+  <!-- BARRA INFERIOR -->
+
+  <nav class="bottom-nav">
+
+    <button class="nav-btn active" id="homeBtn">
+      <span>⌂</span>
+      Inicio
+    </button>
+
+    <button class="nav-btn" id="createBtn">
+      <span>＋</span>
+      Publicar
+    </button>
+
+    <button class="nav-btn" id="profileBtn">
+      <span>♙</span>
+      Perfil
+    </button>
+
+  </nav>
+
+</section>
+
+
+<script type="module">
+
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  query,
+  orderBy,
+  limit,
+  doc,
+  updateDoc,
+  arrayUnion,
+  arrayRemove,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+
+import {
+  getStorage,
+  ref,
+  uploadBytes,
+  getDownloadURL
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-storage.js";
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBMlrOplXMBEEraQTqWClISC12vIPveqRQ",
+  authDomain: "pcsd-b01e1.firebaseapp.com",
+  projectId: "pcsd-b01e1",
+  storageBucket: "pcsd-b01e1.firebasestorage.app",
+  messagingSenderId: "372951248604",
+  appId: "1:372951248604:web:4d28e537c76b5aa5708e19"
+};
+
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const storage = getStorage(app);
+
+
+const welcome = document.getElementById("welcome");
+const application = document.getElementById("app");
+const panel = document.getElementById("authPanel");
+const authForm = document.getElementById("authForm");
+const authMessage = document.getElementById("authMessage");
+
+let mode = "register";
+let currentUser = null;
+let currentPosts = [];
+
+
+/* REGISTRO */
+
+document.getElementById("registerBtn").onclick = () => {
+  mode = "register";
+
+  document.getElementById("authTitle").textContent =
+    "Crear una cuenta";
+
+  authForm.querySelector("button").textContent =
+    "Registrarme";
+
+  authMessage.textContent = "";
+  panel.classList.remove("hidden");
+};
+
+
+/* INICIAR SESIÓN */
+
+document.getElementById("loginBtn").onclick = () => {
+  mode = "login";
+
+  document.getElementById("authTitle").textContent =
+    "Iniciar sesión";
+
+  authForm.querySelector("button").textContent =
+    "Entrar";
+
+  authMessage.textContent = "";
+  panel.classList.remove("hidden");
+};
+
+
+/* PROCESAR CUENTA */
+
+authForm.addEventListener("submit", async (e) => {
+
+  e.preventDefault();
+
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+
+  authMessage.textContent = "Procesando...";
+
+  try {
+
+    if (mode === "register") {
+
+      await createUserWithEmailAndPassword(
+        auth, email, password
+      );
+
+    } else {
+
+      await signInWithEmailAndPassword(
+        auth, email, password
+      );
+
+    }
+
+  } catch (error) {
+
+    authMessage.textContent = "Error: " + error.message;
+
+  }
+
+});
+
+
+/* DETECTAR SESIÓN */
+
+onAuthStateChanged(auth, (user) => {
+
+  currentUser = user;
+
+  if (user) {
+
+    welcome.classList.add("hidden");
+    application.classList.remove("hidden");
+
+    document.getElementById("profileEmail").textContent =
+      user.email || "Usuario PCS";
+
+    loadPosts();
+
+  } else {
+
+    application.classList.add("hidden");
+    welcome.classList.remove("hidden");
+
+  }
+
+});
+
+
+/* CERRAR SESIÓN */
+
+document.getElementById("logoutBtn").onclick = async () => {
+
+  await signOut(auth);
+
+};
+
+
+/* NAVEGACIÓN */
+
+function showPage(page) {
+
+  document.getElementById("homePage").classList.add("hidden");
+  document.getElementById("profilePage").classList.add("hidden");
+
+  document.getElementById(page).classList.remove("hidden");
+
+  document.querySelectorAll(".nav-btn").forEach(btn => {
+    btn.classList.remove("active");
+  });
+
+  if (page === "homePage") {
+    document.getElementById("homeBtn").classList.add("active");
+  } else {
+    document.getElementById("profileBtn").classList.add("active");
+  }
+
+}
+
+document.getElementById("homeBtn").onclick = () => {
+  showPage("homePage");
+};
+
+document.getElementById("profileBtn").onclick = () => {
+  showPage("profilePage");
+  loadMyPosts();
+};
+
+document.getElementById("createBtn").onclick = () => {
+  showPage("homePage");
+  document.getElementById("postText").focus();
+  window.scrollTo({top: 0, behavior: "smooth"});
+};
+
+
+/* PUBLICAR */
+
+document.getElementById("postForm").addEventListener(
+  "submit", async (e) => {
+
+  e.preventDefault();
+
+  if (!currentUser) return;
+
+  const text = document.getElementById("postText").value.trim();
+  const file = document.getElementById("mediaFile").files[0];
+  const message = document.getElementById("postMessage");
+
+  if (!text && !file) {
+    message.textContent = "Escribe algo o selecciona una foto o video.";
+    return;
+  }
+
+  if (file) {
+
+    const isImage = file.type.startsWith("image/");
+    const isVideo = file.type.startsWith("video/");
+
+    if (!isImage && !isVideo) {
+      message.textContent = "Formato no permitido.";
+      return;
+    }
+
+    const maxSize = isImage ? 10 : 30;
+
+    if (file.size > maxSize * 1024 * 1024) {
+      message.textContent = "El archivo supera el límite de " + maxSize + " MB.";
+      return;
+    }
+
+  }
+
+  message.textContent = "Publicando...";
+
+  try {
+
+    let mediaURL = "";
+    let mediaType = "";
+
+    if (file) {
+
+      const path = "posts/" + currentUser.uid + "/" +
+        Date.now() + "_" + file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
+
+      const fileRef = ref(storage, path);
+
+      await uploadBytes(fileRef, file);
+
+      mediaURL = await getDownloadURL(fileRef);
+      mediaType = file.type.startsWith("video/") ? "video" : "image";
+
+    }
+
+    await addDoc(collection(db, "posts"), {
+
+      uid: currentUser.uid,
+      author: "Usuario PCS",
+      text: text,
+      mediaURL: mediaURL,
+      mediaType: mediaType,
+      likes: [],
+      createdAt: serverTimestamp()
+
     });
 
-    document.getElementById("loginBtn").addEventListener("click", () => {
-      mode = "login";
-      title.textContent = "Iniciar sesión";
-      form.querySelector("button").textContent = "Entrar";
-      message.textContent = "";
-      panel.hidden = false;
+    document.getElementById("postText").value = "";
+    document.getElementById("mediaFile").value = "";
+
+    message.textContent = "¡Publicación realizada!";
+
+    await loadPosts();
+
+  } catch (error) {
+
+    message.textContent = "Error: " + error.message;
+
+  }
+
+});
+
+
+/* CARGAR PUBLICACIONES */
+
+async function loadPosts() {
+
+  const container = document.getElementById("posts");
+
+  container.textContent = "Cargando publicaciones...";
+
+  try {
+
+    const q = query(
+      collection(db, "posts"),
+      orderBy("createdAt", "desc"),
+      limit(50)
+    );
+
+    const snapshot = await getDocs(q);
+
+    currentPosts = snapshot.docs.map(item => ({
+      id: item.id,
+      ...item.data()
+    }));
+
+    container.replaceChildren();
+
+    if (currentPosts.length === 0) {
+
+      container.textContent = "Todavía no hay publicaciones. ¡Sé el primero!";
+
+      return;
+
+    }
+
+    currentPosts.forEach(post => {
+
+      container.appendChild(createPost(post));
+
     });
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
+  } catch (error) {
 
-      message.textContent = "Procesando...";
+    container.textContent = "No se pudieron cargar las publicaciones: " + error.message;
 
-      try {
-        if (mode === "register") {
-          await createUserWithEmailAndPassword(
-            auth,
-            email.value,
-            password.value
-          );
+  }
 
-          message.textContent = "¡Cuenta creada correctamente!";
-        } else {
-          await signInWithEmailAndPassword(
-            auth,
-            email.value,
-            password.value
-          );
+}
 
-          message.textContent = "¡Sesión iniciada correctamente!";
+
+/* CREAR TARJETA */
+
+function createPost(post) {
+
+  const card = document.createElement("article");
+  card.className = "post";
+
+  const top = document.createElement("div");
+  top.className = "post-top";
+
+  const name = document.createElement("span");
+  name.className = "username";
+  name.textContent = post.author || "Usuario PCS";
+
+  const date = document.createElement("span");
+  date.className = "post-date";
+  date.textContent = post.createdAt?.toDate
+    ? post.createdAt.toDate().toLocaleString()
+    : "Ahora";
+
+  top.append(name, date);
+  card.appendChild(top);
+
+  if (post.text) {
+
+    const text = document.createElement("p");
+    text.className = "post-text";
+    text.textContent = post.text;
+    card.appendChild(text);
+
+  }
+
+  if (post.mediaURL) {
+
+    if (post.mediaType === "video") {
+
+      const video = document.createElement("video");
+      video.src = post.mediaURL;
+      video.controls = true;
+      video.className = "post-media";
+      card.appendChild(video);
+
+    } else {
+
+      const img = document.createElement("img");
+      img.src = post.mediaURL;
+      img.alt = "Publicación PCS";
+      img.className = "post-media";
+      card.appendChild(img);
+
+    }
+
+  }
+
+  const actions = document.createElement("div");
+  actions.className = "post-actions";
+
+  const liked = (post.likes || []).includes(currentUser.uid);
+
+  const likeBtn = document.createElement("button");
+  likeBtn.className = "action-btn" + (liked ? " liked" : "");
+  likeBtn.textContent = "♥ " + (post.likes || []).length;
+
+  likeBtn.onclick = async () => {
+
+    try {
+
+      const postRef = doc(db, "posts", post.id);
+
+      await updateDoc(postRef, {
+        likes: liked
+          ? arrayRemove(currentUser.uid)
+          : arrayUnion(currentUser.uid)
+      });
+
+      await loadPosts();
+
+    } catch (error) {
+
+      alert("No se pudo actualizar el me gusta: " + error.message);
+
+    }
+
+  };
+
+  const commentBtn = document.createElement("button");
+  commentBtn.className = "action-btn";
+  commentBtn.textContent = "💬 Comentarios";
+
+  commentBtn.onclick = () => {
+    commentInput.focus();
+  };
+
+  actions.append(likeBtn, commentBtn);
+  card.appendChild(actions);
+
+  const comments = document.createElement("div");
+  comments.className = "comments";
+  comments.id = "comments-" + post.id;
+  card.appendChild(comments);
+
+  const commentForm = document.createElement("form");
+  commentForm.className = "comment-form";
+
+  const commentInput = document.createElement("input");
+  commentInput.placeholder = "Escribe un comentario...";
+  commentInput.maxLength = 500;
+  commentInput.required = true;
+
+  const send = document.createElement("button");
+  send.type = "submit";
+  send.textContent = "Enviar";
+
+  commentForm.append(commentInput, send);
+
+  commentForm.onsubmit = async (e) => {
+
+    e.preventDefault();
+
+    try {
+
+      await addDoc(
+        collection(db, "posts", post.id, "comments"),
+        {
+          uid: currentUser.uid,
+          author: "Usuario PCS",
+          text: commentInput.value.trim(),
+          createdAt: serverTimestamp()
         }
-      } catch (error) {
-        message.textContent = "Error: " + error.message;
-      }
+      );
+
+      commentInput.value = "";
+      await loadComments(post.id);
+
+    } catch (error) {
+
+      alert("No se pudo enviar el comentario: " + error.message);
+
+    }
+
+  };
+
+  card.appendChild(commentForm);
+
+  loadComments(post.id);
+
+  return card;
+
+}
+
+
+/* COMENTARIOS */
+
+async function loadComments(postId) {
+
+  try {
+
+    const q = query(
+      collection(db, "posts", postId, "comments"),
+      orderBy("createdAt", "asc"),
+      limit(30)
+    );
+
+    const snapshot = await getDocs(q);
+
+    const container = document.getElementById("comments-" + postId);
+
+    if (!container) return;
+
+    container.replaceChildren();
+
+    snapshot.forEach(item => {
+
+      const data = item.data();
+
+      const line = document.createElement("p");
+      line.className = "comment";
+
+      const author = document.createElement("strong");
+      author.textContent = (data.author || "Usuario PCS") + ": ";
+
+      const content = document.createElement("span");
+      content.textContent = data.text || "";
+
+      line.append(author, content);
+      container.appendChild(line);
+
     });
 
-    console.log("Firebase conectado correctamente");
+  } catch (error) {
 
-  </script>
+    console.error("Error cargando comentarios:", error);
+
+  }
+
+}
+
+
+/* MIS PUBLICACIONES */
+
+async function loadMyPosts() {
+
+  const container = document.getElementById("myPosts");
+
+  container.textContent = "Cargando...";
+
+  try {
+
+    const q = query(
+      collection(db, "posts"),
+      orderBy("createdAt", "desc"),
+      limit(50)
+    );
+
+    const snapshot = await getDocs(q);
+
+    container.replaceChildren();
+
+    let found = false;
+
+    snapshot.forEach(item => {
+
+      const post = {
+        id: item.id,
+        ...item.data()
+      };
+
+      if (post.uid === currentUser.uid) {
+
+        found = true;
+        container.appendChild(createPost(post));
+
+      }
+
+    });
+
+    if (!found) {
+      container.textContent = "Todavía no tienes publicaciones.";
+    }
+
+  } catch (error) {
+
+    container.textContent = "Error: " + error.message;
+
+  }
+
+}
+
+</script>
 
 </body>
 </html>
