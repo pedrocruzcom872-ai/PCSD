@@ -86,6 +86,35 @@
       font-size: 12px;
       margin-top: 35px;
     }
+
+    #authPanel {
+      margin-top: 25px;
+    }
+
+    #authPanel[hidden] {
+      display: none;
+    }
+
+    #authPanel h2 {
+      margin-bottom: 20px;
+    }
+
+    #authPanel input {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 14px;
+      border-radius: 10px;
+      border: 1px solid #283346;
+      background: #171D29;
+      color: white;
+      font-size: 15px;
+    }
+
+    #authMessage {
+      margin-top: 15px;
+      font-size: 14px;
+      overflow-wrap: anywhere;
+    }
   </style>
 </head>
 
@@ -105,48 +134,112 @@
       de todo el mundo.
     </p>
 
-    <button class="btn primary" onclick="alert('Próximamente: Crear cuenta')">
+    <button class="btn primary" id="registerBtn">
       Crear una cuenta
     </button>
 
     <button class="btn secondary" id="loginBtn">
-  Iniciar sesión
+      Iniciar sesión
     </button>
 
     <section id="authPanel" hidden>
-  <h2 id="authTitle">Crear una cuenta</h2>
+      <h2 id="authTitle">Crear una cuenta</h2>
 
-  <form id="authForm">
-    <input id="email" type="email" placeholder="Correo electrónico" required>
-    <input id="password" type="password" placeholder="Contraseña" required minlength="6">
+      <form id="authForm">
+        <input id="email" type="email"
+          placeholder="Correo electrónico" required>
 
-    <button class="btn primary" type="submit">Continuar</button>
-  </form>
+        <input id="password" type="password"
+          placeholder="Contraseña" required minlength="6">
 
-  <p id="authMessage"></p>
+        <button class="btn primary" type="submit">
+          Registrarme
+        </button>
+      </form>
+
+      <p id="authMessage" aria-live="polite"></p>
     </section>
 
   </main>
-<script type="module">
-  import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
-} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyBMlrOplXMBEEraQTqWClISC12vIPveqRQ",
-    authDomain: "pcsd-b01e1.firebaseapp.com",
-    projectId: "pcsd-b01e1",
-    storageBucket: "pcsd-b01e1.firebasestorage.app",
-    messagingSenderId: "372951248604",
-    appId: "1:372951248604:web:4d28e537c76b5aa5708e19"
-  };
+  <script type="module">
 
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
 
-  console.log("Firebase conectado");
-</script>
+    import {
+      getAuth,
+      createUserWithEmailAndPassword,
+      signInWithEmailAndPassword
+    } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBMlrOplXMBEEraQTqWClISC12vIPveqRQ",
+      authDomain: "pcsd-b01e1.firebaseapp.com",
+      projectId: "pcsd-b01e1",
+      storageBucket: "pcsd-b01e1.firebasestorage.app",
+      messagingSenderId: "372951248604",
+      appId: "1:372951248604:web:4d28e537c76b5aa5708e19"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const panel = document.getElementById("authPanel");
+    const title = document.getElementById("authTitle");
+    const form = document.getElementById("authForm");
+    const message = document.getElementById("authMessage");
+    const email = document.getElementById("email");
+    const password = document.getElementById("password");
+
+    let mode = "register";
+
+    document.getElementById("registerBtn").addEventListener("click", () => {
+      mode = "register";
+      title.textContent = "Crear una cuenta";
+      form.querySelector("button").textContent = "Registrarme";
+      message.textContent = "";
+      panel.hidden = false;
+    });
+
+    document.getElementById("loginBtn").addEventListener("click", () => {
+      mode = "login";
+      title.textContent = "Iniciar sesión";
+      form.querySelector("button").textContent = "Entrar";
+      message.textContent = "";
+      panel.hidden = false;
+    });
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      message.textContent = "Procesando...";
+
+      try {
+        if (mode === "register") {
+          await createUserWithEmailAndPassword(
+            auth,
+            email.value,
+            password.value
+          );
+
+          message.textContent = "¡Cuenta creada correctamente!";
+        } else {
+          await signInWithEmailAndPassword(
+            auth,
+            email.value,
+            password.value
+          );
+
+          message.textContent = "¡Sesión iniciada correctamente!";
+        }
+      } catch (error) {
+        message.textContent = "Error: " + error.message;
+      }
+    });
+
+    console.log("Firebase conectado correctamente");
+
+  </script>
+
 </body>
 </html>
